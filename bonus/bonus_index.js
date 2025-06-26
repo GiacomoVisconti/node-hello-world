@@ -10,23 +10,40 @@ const server = createServer((req, res) => {
 
 // starts a simple http server locally on port 3000
 server.listen(3000, '127.0.0.1', () => {
-  console.log('Listening on 127.0.0.1:3000');
+  console.log(chalk.bgGreen('Incredibile Funziona, che cu...fortuna :)'));
 });
 
 // run with `node server.mjs`
 
 
 import dotenv from 'dotenv'
-import { log } from 'node:console';
+import chalk from 'chalk';
+import axios from 'axios';
+import { error } from 'node:console';
 
-console.log("Ciao Tizio " + process.env.password);
+console.log(chalk.red("Ciao Tizio " + process.env.password));
 
-fetch(process.env.photo_api)
-.then((res => res.json()))
-.then((data) => {
-  data.forEach((element)=>{
+// fetch(process.env.photo_api)
+// .then(res => res.json())
+// .then((data) => {
+//   data.forEach((element)=>{
     
-    console.log(element.title);
+//     console.log(chalk.bgBlue(element.title));
+//   })
+// })
+
+axios.get(process.env.photo_api)
+.then(res=>{
+
+  res.data.forEach((element)=>{
+    
+    console.log(chalk.bgBlue(element.title), chalk.bgYellow(element.date));
   })
+
 })
+.catch(error =>{
+  console.error(error)
+})
+
+
 
