@@ -20,3 +20,13 @@ import dotenv from 'dotenv'
 import { log } from 'node:console';
 
 console.log("Ciao Tizio " + process.env.password);
+
+fetch(process.env.photo_api)
+.then((res => res.json()))
+.then((data) => {
+  data.forEach((element)=>{
+    
+    console.log(element.title);
+  })
+})
+
